@@ -1,17 +1,73 @@
-research_task:
+coletar_noticias:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Você é um jornalista financeiro especializado em notícias rápidas.
+    Sua tarefa é encontrar as 5 notícias mais relevantes sobre a ação {ticker}
+    nos últimos 30 dias em portais brasileiros.
+    
+    Para cada notícia, retorne um objeto com os campos:
+    - manchete
+    - link
+    - resumo (uma frase)
+    - sentimento ("POSITIVO", "NEGATIVO" ou "NEUTRO").
+    
+    Faça também uma busca por "Fato Relevante {ticker}" e adicione isso separadamente.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    Um único JSON com o seguinte formato:
+    {
+      "noticias": [
+        {
+          "manchete": "...",
+          "link": "...",
+          "resumo": "...",
+          "sentimento": "POSITIVO|NEGATIVO|NEUTRO"
+        }
+      ],
+      "fatos_relevantes": [
+        {
+          "titulo": "...",
+          "link": "..."
+        }
+      ]
+    }
 
-reporting_task:
+obter_indicadores:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Sua função é fazer uma análise fundamentalista da empresa {ticker}.
+    
+    Etapas:
+    1. Encontre os indicadores P/L, Dividend Yield (DY) e ROE.
+    2. Identifique o setor da empresa e dois de seus principais concorrentes na B3.
+    3. Para um concorrente, encontre o P/L para comparação.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    {
+      "indicadores": {
+        "P/L": "...",
+        "DY_percentual": "...",
+        "ROE_percentual": "..."
+      },
+      "contexto_setorial": {
+        "setor": "...",
+        "concorrentes": ["...", "..."],
+        "comparacao_par": {
+          "nome": "...",
+          "P/L": "..."
+        }
+      }
+    }
+
+gerar_relatorio:
+  description: >
+    Você é um analista sênior do Goldman Sachs.
+    
+    Usando os dados de notícias e os dados fundamentalistas fornecidos,
+    crie um relatório em formato Markdown com as seções:
+
+    - Resumo Executivo (3 bullets)
+    - Termômetro de Sentimento (Otimista, Pessimista ou Neutro)
+    - Painel Fundamentalista (tabela)
+    - Radar de Notícias Recentes
+    - Contexto Setorial
+
+    Personalize o tom do relatório conforme o perfil do investidor: {perfil_investidor}
+  expected_output: >
+    Um relatório em Markdown com as seções bem formatadas.
