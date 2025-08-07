@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  # This is the name of our service
+  app:
+    # Build the Docker image from the Dockerfile in the current directory
+    build: .
+    # Mount the current directory on the host to /app in the container
+    # This means changes you make to your code locally are reflected
+    # instantly inside the container, without needing to rebuild.
+    volumes:
+      - .:/app
+    # Load environment variables from a .env file
+    # This keeps your API keys secure and out of the Dockerfile
+    env_file:
+      - .env
