@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    background-image: url(img/image.png);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    font-size: 3rem;
+    width: 1000px;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loginBox {
+    border: 4px solid white;
+    padding: 30px;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 1px 6px rgba(2, 2, 253, 0.4);
+    opacity: 0.9;
+}
+
+.formGroup {
+    display: block;
+}
+
+.input {
+    opacity: 0.6;
+    font-size: 1.5rem;
+    padding: 20px;
+    width: 70%;
+    height: 90%;
+    border: 4px solid white;
+    border-radius: 10px;
+    margin: 20px
+}
+
+.button {
+    opacity: 0.8;
+    height: 70%;
+    padding: 20px;
+}
